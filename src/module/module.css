@@ -1,0 +1,87 @@
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Design tokens — app mẹ có thể ghi đè bất kỳ biến nào ===== */
+.ctsv-module {
+  --tm-font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --tm-z: 1000;
+  --tm-bg: 248 250 252;        /* nền vùng làm việc (khớp app mẹ) */
+  --tm-surface: 255 255 255;
+  --tm-subtle: 250 250 250;
+  --tm-muted: 244 244 245;
+  --tm-line: 228 228 231;
+  --tm-line-strong: 212 212 216;
+  --tm-fg: 24 24 27;
+  --tm-fg-2: 82 82 91;
+  --tm-fg-3: 161 161 170;
+  --tm-accent: 15 23 42;       /* nút chính xanh đen như app mẹ */
+  --tm-danger: 220 38 38;
+  --tm-warn: 234 88 12;
+  --tm-success: 22 163 74;
+  --tm-caution: 202 138 4;
+  --tm-focus: 37 99 235;
+}
+
+/* ===== Reset có phạm vi — thay cho preflight toàn cục của Tailwind ===== */
+.ctsv-module {
+  font-family: var(--tm-font);
+  font-size: 13px;
+  line-height: 20px;
+  color: rgb(var(--tm-fg));
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'cv11', 'ss01';
+}
+:where(.ctsv-module) *, :where(.ctsv-module) *::before, :where(.ctsv-module) *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgb(var(--tm-line));
+}
+:where(.ctsv-module) :is(h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd) { margin: 0; padding: 0; }
+:where(.ctsv-module) :is(h1, h2, h3, h4) { font-size: inherit; font-weight: inherit; }
+:where(.ctsv-module) :is(ul, ol) { list-style: none; }
+:where(.ctsv-module) :is(button, input, select, textarea) {
+  font: inherit; color: inherit; margin: 0; background: transparent; letter-spacing: inherit;
+}
+:where(.ctsv-module) button { cursor: pointer; padding: 0; text-align: inherit; }
+:where(.ctsv-module) button:disabled { cursor: not-allowed; }
+:where(.ctsv-module) :is(input, textarea, select) { padding: 0; }
+:where(.ctsv-module) :is(input, textarea)::placeholder { color: rgb(var(--tm-fg-3)); }
+:where(.ctsv-module) :is(input, textarea, select, button):focus { outline: none; }
+:where(.ctsv-module) :is(button, a, [tabindex]):focus-visible {
+  outline: 2px solid rgb(var(--tm-focus) / 0.5); outline-offset: 1px;
+}
+:where(.ctsv-module) table { border-collapse: collapse; border-spacing: 0; text-indent: 0; }
+:where(.ctsv-module) a { color: inherit; text-decoration: inherit; }
+:where(.ctsv-module) :is(img, svg) { display: block; }
+:where(.ctsv-module) textarea { resize: none; }
+
+@layer components {
+  .tm-num { font-variant-numeric: tabular-nums; }
+  .tm-btn {
+    @apply tm-inline-flex tm-h-7 tm-items-center tm-gap-1.5 tm-whitespace-nowrap tm-rounded tm-border tm-border-line tm-bg-surface tm-px-2.5 tm-text-sm tm-font-medium tm-text-fg hover:tm-bg-muted disabled:tm-opacity-50;
+  }
+  .tm-btn-primary {
+    @apply tm-inline-flex tm-h-7 tm-items-center tm-gap-1.5 tm-whitespace-nowrap tm-rounded tm-bg-accent tm-px-2.5 tm-text-sm tm-font-medium tm-text-white hover:tm-bg-accent/90 disabled:tm-opacity-40;
+  }
+  .tm-input {
+    @apply tm-h-7 tm-w-full tm-rounded tm-border tm-border-line tm-bg-surface tm-px-2 tm-text-sm focus:tm-border-line-strong;
+  }
+  .tm-card { @apply tm-rounded-lg tm-border tm-border-line tm-bg-surface; }
+  .tm-label { @apply tm-text-xs tm-font-medium tm-text-fg-3; }
+}
+
+/* Thanh cuộn mảnh */
+.ctsv-module .tm-scroll { scrollbar-width: thin; scrollbar-color: rgb(var(--tm-line-strong)) transparent; }
+
+@keyframes tm-slide-in { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes tm-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tm-pop-in { from { opacity: 0; transform: translateY(4px) scale(.99); } to { opacity: 1; transform: none; } }
+.ctsv-module .tm-anim-drawer { animation: tm-slide-in 180ms cubic-bezier(.2,.8,.2,1); }
+.ctsv-module .tm-anim-fade { animation: tm-fade-in 140ms ease-out; }
+.ctsv-module .tm-anim-pop { animation: tm-pop-in 140ms ease-out; }
+
+/* ===== In báo cáo A4 — xem lib/print.ts (in qua iframe riêng) ===== */
+@media print {
+  .ctsv-module .tm-print-area { box-shadow: none; }
+}

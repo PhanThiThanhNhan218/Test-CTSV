@@ -1,0 +1,40 @@
+/* Mô phỏng khung app mẹ (sidebar + header) — KHÔNG thuộc module. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; color: #18181b; background: #f8fafc; -webkit-font-smoothing: antialiased; }
+
+.app { display: flex; height: 100%; }
+.sb { width: 254px; flex-shrink: 0; display: flex; flex-direction: column; background: #fff; border-right: 1px solid #e4e4e7; }
+.sb-brand { display: flex; gap: 10px; padding: 8px 10px 16px; border-bottom: 1px solid #f0f0f2; }
+.sb-logo { width: 44px; height: 44px; border-radius: 6px; background: #18181b; color: #fff; font-weight: 700; font-size: 12px; display: grid; place-items: center; flex-shrink: 0; margin-top: 4px; }
+.sb-org { font-weight: 600; font-size: 14px; line-height: 19px; }
+.sb-sub { font-size: 12px; color: #71717a; line-height: 16px; margin-top: 2px; }
+.sb-cta { margin: 12px 10px 14px 0; height: 40px; border: 0; border-radius: 0 8px 8px 0; background: #0f172a; color: #fff; font: 600 14px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.sb-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 10px 14px 6px; border-bottom: 1px solid #f0f0f2; }
+.sb-item { display: flex; align-items: center; gap: 12px; height: 37px; padding: 0 8px; border-radius: 6px; font-size: 14px; color: #27272a; text-decoration: none; }
+.sb-item:hover { background: #f4f4f5; }
+.sb-item.active { background: #f1f5f9; font-weight: 600; color: #0f172a; }
+.sb-item svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.6; flex-shrink: 0; }
+.sb-badge { margin-left: auto; font-size: 10px; font-weight: 600; color: #fff; background: #0f172a; border-radius: 4px; padding: 1px 5px; }
+.sb-recent { padding: 12px 10px; font-size: 14px; color: #52525b; }
+.sb-recent-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.sb-search { height: 30px; border: 1px solid #e4e4e7; border-radius: 6px; padding: 0 10px 0 28px; font-size: 13px; color: #a1a1aa; display: flex; align-items: center; position: relative; }
+.sb-search::before { content: ''; position: absolute; left: 10px; width: 9px; height: 9px; border: 1.4px solid #a1a1aa; border-radius: 50%; }
+.sb-tree { margin-top: 10px; font-size: 14px; }
+.sb-tree div { height: 34px; display: flex; align-items: center; padding: 0 8px; border-radius: 6px; }
+.sb-tree .sel { background: #e8edf3; font-weight: 600; color: #18181b; margin: 0 -4px; padding-left: 26px; }
+.sb-tree .child { padding-left: 22px; }
+.sb-foot { margin-top: auto; border-top: 1px solid #f0f0f2; }
+.sb-collapse { display: flex; justify-content: flex-end; padding: 8px 14px; border-bottom: 1px solid #f0f0f2; }
+.sb-collapse span { width: 24px; height: 22px; border: 1px solid #e4e4e7; border-radius: 4px; display: grid; place-items: center; font-size: 12px; color: #52525b; }
+.sb-user { display: flex; align-items: center; gap: 10px; padding: 12px 8px; }
+.sb-ava { width: 30px; height: 30px; border-radius: 50%; background: #f4f4f5; display: grid; place-items: center; font-weight: 600; font-size: 13px; }
+.sb-uname { font-weight: 600; font-size: 14px; }
+.sb-urole { font-size: 13px; color: #71717a; }
+
+.main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ph { height: 54px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 28px; background: #fff; border-bottom: 1px solid #e4e4e7; }
+.ph svg { width: 22px; height: 22px; stroke: #18181b; fill: none; stroke-width: 1.7; }
+.ph h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.content { flex: 1; min-height: 0; }
+.placeholder { height: 100%; display: grid; place-items: center; color: #a1a1aa; font-size: 14px; }
